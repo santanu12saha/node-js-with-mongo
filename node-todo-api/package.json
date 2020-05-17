@@ -1,0 +1,27 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "A simple node todo api with mongodb curd operation.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santanu12saha/node-js-with-mongo.git"
+  },
+  "keywords": [
+    "node",
+    "mongodb",
+    "api"
+  ],
+  "author": "Santanu Saha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santanu12saha/node-js-with-mongo/issues"
+  },
+  "homepage": "https://github.com/santanu12saha/node-js-with-mongo#readme",
+  "dependencies": {
+    "mongodb": "^3.5.7"
+  }
+}
