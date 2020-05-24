@@ -48,55 +48,70 @@ mongoDB.getMongoClient(dbUtils.url, options, (client) => {
                 mongoDB.closeClient(client, (msg) => {
                     console.log(msg);
                 });
-            })
+            });
 
         });
     });
 });
 
 deleteManyTodos = (db, deleteTodos, callback) => {
-    db.collection('Todos').deleteMany(deleteTodos).then((result) => {
-        callback(result.result.n === 0 ? `No todos found for delete with text: ${deleteTodos.text}` : `${result.result.n} todos delete with text: ${deleteTodos.text}`);
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').deleteMany(deleteTodos).then((result) => {
+            callback(result.result.n === 0 ? `No todos found for delete with text: ${deleteTodos.text}` : `${result.result.n} todos delete with text: ${deleteTodos.text}`);
+        }, (err) => {
+            callback(`Something went wrong unable to delete many todos ${err}`);
+        });
+    }catch (err) {
         callback(`Something went wrong unable to delete many todos ${err}`);
-    });
+    }
 };
 
 deleteOneTodos = (db, deleteTodos, callback) => {
-    db.collection('Todos').deleteOne(deleteTodos).then((result) => {
-        callback(result.result.n === 0 ? `No todos found for delete with text: ${deleteTodos.text}` : `${result.result.n} todos delete with text: ${deleteTodos.text}`);
-    },(err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').deleteOne(deleteTodos).then((result) => {
+            callback(result.result.n === 0 ? `No todos found for delete with text: ${deleteTodos.text}` : `${result.result.n} todos delete with text: ${deleteTodos.text}`);
+        },(err) => {
+            callback(`Something went wrong unable to delete todo ${err}`);
+        });
+    }catch (err) {
         callback(`Something went wrong unable to delete todo ${err}`);
-    });
+    }
 };
 
 findOneAndDeleteTodos = (db, deleteTodos1, callback) => {
-    db.collection('Todos').findOneAndDelete(deleteTodos1).then((result) => {
-        callback(result.lastErrorObject.n === 0 ? `No todos found for delete with completed: ${deleteTodos1.completed}` : `${result.lastErrorObject.n} todos delete with compleled: ${deleteTodos1.completed}\n${JSON.stringify(result.value, undefined, 2)}`);
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').findOneAndDelete(deleteTodos1).then((result) => {
+            callback(result.lastErrorObject.n === 0 ? `No todos found for delete with completed: ${deleteTodos1.completed}` : `${result.lastErrorObject.n} todos delete with compleled: ${deleteTodos1.completed}\n${JSON.stringify(result.value, undefined, 2)}`);
+        }, (err) => {
+            callback(`Something went wrong unable to delete todo ${err}`);
+        });
+    }catch (err) {
         callback(`Something went wrong unable to delete todo ${err}`);
-    });
+    }
 };
 
 deleteManyUsers = (db, deleteUsers, callback) => {
-    db.collection('Users').deleteMany(deleteUsers).then((result) => {
-        callback(result.result.n === 0 ? `No users found for delete with name: ${deleteUsers.name}` : `${result.result.n} users delete with name: ${deleteUsers.name}`);
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Users').deleteMany(deleteUsers).then((result) => {
+            callback(result.result.n === 0 ? `No users found for delete with name: ${deleteUsers.name}` : `${result.result.n} users delete with name: ${deleteUsers.name}`);
+        }, (err) => {
+            callback(`Something went wrong unable to delete many users ${err}`);
+        });
+    }catch (err) {
         callback(`Something went wrong unable to delete many users ${err}`);
-    })
+    }
 };
 
 findOneAndDeleteUsers = (db, id, callback) => {
-    db.collection('Users').findOneAndDelete({
-        _id: mongoDB.getObjectId(id)
-    }).then((result) => {
-        callback(result.lastErrorObject.n === 0 ? `No users found for delete with id: ${id}` : `${result.lastErrorObject.n} users delete with id: ${id}\n${JSON.stringify(result.value, undefined, 2)}`);
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Users').findOneAndDelete({
+            _id: mongoDB.getObjectId(id)
+        }).then((result) => {
+            callback(result.lastErrorObject.n === 0 ? `No users found for delete with id: ${id}` : `${result.lastErrorObject.n} users delete with id: ${id}\n${JSON.stringify(result.value, undefined, 2)}`);
+        }, (err) => {
+            callback(`Something went wrong unable to delete user ${err}`);
+        });
+    }catch (err) {
         callback(`Something went wrong unable to delete user ${err}`);
-    });
+    }
 };

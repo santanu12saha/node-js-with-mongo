@@ -43,50 +43,65 @@ mongoDB.getMongoClient(dbUtils.url, options, (client) => {
 });
 
 findAllTodos = (db, callback) => {
-    db.collection('Todos').find().toArray().then((docs) => {
-        callback(JSON.stringify(docs, undefined, 2));
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').find().toArray().then((docs) => {
+            callback(JSON.stringify(docs, undefined, 2));
+        }, (err) => {
+            callback('Unable to fetch todos', err);
+        });
+    }catch (err) {
         callback('Unable to fetch todos', err);
-    });
+    }
 };
 
 findAllTodosWithCompletedStatus = (db, callback) => {
-    db.collection('Todos').find({completed: true}).toArray().then((docs) => {
-        callback(JSON.stringify(docs, undefined, 2));
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').find({completed: true}).toArray().then((docs) => {
+            callback(JSON.stringify(docs, undefined, 2));
+        }, (err) => {
+            callback('Unable to fetch todos with true completed status', err);
+        });
+    }catch (err) {
         callback('Unable to fetch todos with true completed status', err);
-    });
+    }
 };
 
 findTodosWithId = (db, id, callback) => {
-    db.collection('Todos').find({
-        _id: mongoDB.getObjectId(id)
-    }).toArray().then((docs) => {
-        callback(JSON.stringify(docs, undefined, 2));
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').find({
+            _id: mongoDB.getObjectId(id)
+        }).toArray().then((docs) => {
+            callback(JSON.stringify(docs, undefined, 2));
+        }, (err) => {
+            callback(`Unable to fetch todos with ${id}`, err);
+        });
+    }catch (err) {
         callback(`Unable to fetch todos with ${id}`, err);
-    });
+    }
 };
 
 findTodosCount = (db, callback) => {
-    db.collection('Todos').find().count().then((count) => {
-        callback(count);
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Todos').find().count().then((count) => {
+            callback(count);
+        }, (err) => {
+            callback(`Unable to fetch todos count`, err);
+        });
+    }catch (err) {
         callback(`Unable to fetch todos count`, err);
-    });
+    }
 };
 
 findUsersWithName = (db, name, callback) => {
-    db.collection('Users').find({
-        name: name
-    }).toArray().then((docs) => {
-        callback(JSON.stringify(docs, undefined, 2));
-    }, (err) => {
-        console.log(err);
+    try{
+        db.collection('Users').find({
+            name: name
+        }).toArray().then((docs) => {
+            callback(JSON.stringify(docs, undefined, 2));
+        }, (err) => {
+            callback(`Unable to fetch all users with name ${name}`, err);
+        });
+    }catch (err) {
         callback(`Unable to fetch all users with name ${name}`, err);
-    });
+    }  
 };
