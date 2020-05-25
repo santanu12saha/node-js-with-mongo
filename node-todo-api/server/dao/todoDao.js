@@ -15,8 +15,19 @@ var insertTodo = (todo) => {
     });
 };
 
+var fetchAllTodos = () => {
+    return new Promise((resolve, reject) => {
+        Todo.find({}).then((docs) => {
+            resolve(docs);
+        }, (err) => {
+            reject(err);
+        });
+    });
+};
+
 module.exports = {
-    insertTodo
+    insertTodo,
+    fetchAllTodos
 }
 
 

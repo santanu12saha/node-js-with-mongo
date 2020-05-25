@@ -13,6 +13,17 @@ var saveTodo = (todoRequest) => {
     });
 };
 
+var getAllTodos = () => {
+    return new Promise((resolve, reject) => {
+        todoDao.fetchAllTodos().then((result) => {
+            resolve(result);
+        }, (err) => {
+            reject(err);
+        });
+    });
+};
+
 module.exports = {
-    saveTodo
+    saveTodo,
+    getAllTodos
 }

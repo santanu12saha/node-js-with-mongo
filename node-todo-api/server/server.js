@@ -7,11 +7,19 @@ var app = express();
 app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
-    todoService.saveTodo(req).then((result) => {
-        res.send(result);
+    todoService.saveTodo(req).then((todo) => {
+        res.send(todo);
     }, (err) => {
         res.status(400).send(err);
     })
+});
+
+app.get('/todos', (req, res) => {
+    todoService.getAllTodos().then((todos) => {
+        res.send({todos});
+    }, (err) => {
+        res.status(400).send(err);
+    });
 });
 
 app.listen(3000, () => {
