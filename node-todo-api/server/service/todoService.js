@@ -23,7 +23,18 @@ var getAllTodos = () => {
     });
 };
 
+var getTodoById = (id) => {
+    return new Promise((resolve, reject) => {
+        todoDao.fetchTodoById(id).then((result) => {
+            resolve(result);
+        }, (err) => {
+            reject(err);
+        });
+    });
+};
+
 module.exports = {
     saveTodo,
-    getAllTodos
+    getAllTodos,
+    getTodoById
 }

@@ -25,9 +25,20 @@ var fetchAllTodos = () => {
     });
 };
 
+var fetchTodoById = (id) => {
+    return new Promise((resolve, reject) => {
+        Todo.findById(id).then((todo) => {
+            resolve(todo);
+        }, (err) => {
+            reject(err);
+        });
+    });
+};
+
 module.exports = {
     insertTodo,
-    fetchAllTodos
+    fetchAllTodos,
+    fetchTodoById
 }
 
 
