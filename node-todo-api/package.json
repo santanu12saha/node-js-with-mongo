@@ -4,7 +4,8 @@
   "description": "A simple node todo api with mongodb curd operation.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha server/**/*.test.js",
+    "test-watch": "nodemon --exec 'npm test'"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,15 @@
   },
   "homepage": "https://github.com/santanu12saha/node-js-with-mongo#readme",
   "dependencies": {
-    "mongodb": "^3.5.7"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.15"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^7.2.0",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   }
 }
