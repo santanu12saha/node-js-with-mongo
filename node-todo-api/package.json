@@ -4,8 +4,12 @@
   "description": "A simple node todo api with mongodb curd operation.",
   "main": "app.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
+  },
+  "engines": {
+    "node": "10.20.1"
   },
   "repository": {
     "type": "git",

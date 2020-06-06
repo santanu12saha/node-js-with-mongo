@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var todoService = require('./service/todoService');
 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -38,8 +40,8 @@ app.get('/todos/:id', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
 });
 
 module.exports = { app }; 
