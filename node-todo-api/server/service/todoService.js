@@ -43,9 +43,20 @@ var removeTodoById = (id) => {
     });
 };
 
+var updateTodoById = (id, todo) => {
+    return new Promise((resolve, reject) => {
+        todoDao.updateTodoById(id, todo).then((result) => {
+            resolve(result);
+        }, (err) => {
+            reject(err);
+        })
+    });
+};
+
 module.exports = {
     saveTodo,
     getAllTodos,
     getTodoById,
-    removeTodoById
+    removeTodoById,
+    updateTodoById
 }

@@ -45,11 +45,22 @@ var deleteTodoById = (id) => {
     });
 };
 
+var updateTodoById = (id, todo) => {
+    return new Promise((resolve, reject) => {
+        Todo.findByIdAndUpdate(id, {$set: todo}, {new: true}).then((todo) => {
+            resolve(todo);
+        },(err) => {
+            reject(err);
+        });
+    });
+};
+
 module.exports = {
     insertTodo,
     fetchAllTodos,
     fetchTodoById,
-    deleteTodoById
+    deleteTodoById,
+    updateTodoById
 }
 
 
